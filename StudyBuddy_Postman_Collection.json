@@ -1,0 +1,231 @@
+{
+  "info": {
+    "name": "StudyBuddy API - Track 2 Submission",
+    "description": "API collection for the StudyBuddy full-stack application. Demonstrates full CRUD for Courses and Notes, including AI Summarization via Gemini 1.5 Flash.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Courses",
+      "item": [
+        {
+          "name": "Get All Courses",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "courses"
+              ]
+            },
+            "description": "Retrieves an array of all available courses from the SQLite database."
+          }
+        },
+        {
+          "name": "Create Course",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Operating Systems\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/courses",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "courses"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Course",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Advanced UI/UX Design\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/courses/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "courses",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Course",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/courses/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "courses",
+                "1"
+              ]
+            },
+            "description": "Deletes the course. Triggers an ON CASCADE DELETE for all child notes."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Notes",
+      "item": [
+        {
+          "name": "Get Notes By Course",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/courses/1/notes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "courses",
+                "1",
+                "notes"
+              ]
+            },
+            "description": "Returns all notes linked to a specific course ID."
+          }
+        },
+        {
+          "name": "Create Note",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Process Scheduling\",\n  \"content\": \"# CPU Scheduling Algorithms\\n- FCFS\\n- Round Robin\\n- Priority Scheduling\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/courses/1/notes",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "courses",
+                "1",
+                "notes"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Update Note",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Process Scheduling (Updated)\",\n  \"content\": \"Updated markdown body here.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/notes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "notes",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Delete Note",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/notes/1",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "notes",
+                "1"
+              ]
+            }
+          }
+        },
+        {
+          "name": "Summarize Note with AI",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:5000/notes/1/summarize",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "5000",
+              "path": [
+                "notes",
+                "1",
+                "summarize"
+              ]
+            },
+            "description": "Calls the Google Gemini LLM API to generate a summary for the note matching the ID."
+          }
+        }
+      ]
+    }
+  ]
+}
